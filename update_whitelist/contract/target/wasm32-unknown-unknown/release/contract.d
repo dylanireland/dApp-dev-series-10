@@ -1,0 +1,1 @@
+/Users/dylan/Desktop/CASPER/YOUTUBE/10/project/update_whitelist/contract/target/wasm32-unknown-unknown/release/contract.wasm: /Users/dylan/Desktop/CASPER/YOUTUBE/10/project/update_whitelist/contract/src/main.rs

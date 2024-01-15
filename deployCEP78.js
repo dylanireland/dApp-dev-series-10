@@ -8,11 +8,13 @@ import {
 	NFTOwnershipMode,
 	OwnerReverseLookupMode
 } from "casper-cep78-js-client";
-import { csprToMotes, Keys } from "casper-js-sdk";
+import pkg from "casper-js-sdk";
+const { csprToMotes, Keys } = pkg;
 
-const client = new CEP78Client("http://5.9.6.115:7777/rpc");
+const client = new CEP78Client("http://5.9.6.115:7777/rpc", "casper-test");
 
-const keys = Keys.loadKeyPairFromPrivateFile("keys/secret_key.pem");
+const keys = Keys.Ed25519.loadKeyPairFromPrivateFile("keys/secret_key.pem");
+console.log(keys.publicKey);
 
 const deploy = await client.install(
 	{
@@ -30,5 +32,8 @@ const deploy = await client.install(
 	},
 	csprToMotes(250),
 	keys.publicKey,
-	keys
+	[keys]
 );
+
+const hash = await deploy.send(client.nodeAddress);
+console.log(hash);

@@ -17,7 +17,7 @@ use casper_contract::{
     contract_api::{runtime, storage},
     unwrap_or_revert::UnwrapOrRevert,
 };
-use casper_types::{ApiError, CLType, EntryPointAccess, EntryPointType, EntryPoints, EntryPoint, Parameter, contracts::NamedKeys};
+use casper_types::{ApiError, CLType, EntryPointAccess, EntryPointType, EntryPoints, EntryPoint, Parameter, contracts::NamedKeys, CLValue};
 
 /// An error enum which can be converted to a `u16` so it can be returned as an `ApiError::User`.
 #[repr(u16)]
@@ -55,6 +55,16 @@ pub extern "C" fn call() {
             vec![
                 Parameter::new("candidate", CLType::String),
             ],
+            CLType::Unit,
+            EntryPointAccess::Public,
+            EntryPointType::Contract,
+        )
+    );
+
+    entry_points.add_entry_point(
+        EntryPoint::new(
+            "get_whitelist_uref",
+            vec![],
             CLType::Unit,
             EntryPointAccess::Public,
             EntryPointType::Contract,
@@ -151,5 +161,12 @@ pub extern "C" fn approve() {
     }
     storage::write(candidates_uref, candidates);
     storage::write(whitelist_uref, whitelist);
+}
+
+#[no_mangle]
+pub extern "C" fn get_whitelist_uref() {
+    let whitelist_uref = runtime::get_key("whitelist").unwrap_or_revert().into_uref().unwrap_or_revert();
+
+    runtime::ret(CLValue::from_t(whitelist_uref).unwrap_or_revert());
 }
 
