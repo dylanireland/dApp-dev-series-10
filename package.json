@@ -1,6 +1,5 @@
 {
   "dependencies": {
     "casper-cep78-js-client": "^1.5.1"
-  },
-  "type": "module"
+  }
 }

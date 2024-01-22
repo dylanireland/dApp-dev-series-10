@@ -1,5 +1,5 @@
 casper-client put-deploy \
---node-address http://5.9.6.115:7777/rpc \
+--node-address http://NODE_ADDRESS:7777/rpc \
 --chain-name casper-test \
 --secret-key ../keys/secret_key.pem \
 --payment-amount 40000000000 \

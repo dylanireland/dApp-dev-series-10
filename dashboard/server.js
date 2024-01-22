@@ -12,7 +12,7 @@ const fs = require("fs");
 app.use(express.json({ limit: "50mb" }));
 app.use(cors());
 
-const client = new CasperClient("http://5.9.6.115:7777/rpc");
+const client = new CasperClient("http://NODE_ADDRESS:7777/rpc");
 const contract = new Contracts.Contract(client);
 
 contract.setContractHash(

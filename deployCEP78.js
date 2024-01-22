@@ -1,4 +1,4 @@
-import {
+const {
 	CEP78Client,
 	MetadataMutability,
 	MintingMode,
@@ -7,14 +7,13 @@ import {
 	NFTMetadataKind,
 	NFTOwnershipMode,
 	OwnerReverseLookupMode
-} from "casper-cep78-js-client";
-import pkg from "casper-js-sdk";
-const { csprToMotes, Keys } = pkg;
+} = require("casper-cep78-js-client");
 
-const client = new CEP78Client("http://5.9.6.115:7777/rpc", "casper-test");
+const { csprToMotes, Keys } = require("casper-js-sdk");
+
+const client = new CEP78Client("http://NODE_ADDRESS:7777/rpc", "casper-test");
 
 const keys = Keys.Ed25519.loadKeyPairFromPrivateFile("keys/secret_key.pem");
-console.log(keys.publicKey);
 
 const deploy = await client.install(
 	{

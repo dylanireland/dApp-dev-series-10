@@ -19,7 +19,7 @@ function App() {
 
 	const provider = CasperWalletProvider();
 
-	const casperClient = new CasperClient("http://5.9.6.115:7777/rpc");
+	const casperClient = new CasperClient("http://NODE_ADDRESS:7777/rpc");
 	const contractClient = new Contracts.Contract(casperClient);
 
 	const contractHash =

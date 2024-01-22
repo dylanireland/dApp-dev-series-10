@@ -222,7 +222,7 @@ function buildJSX(accounts, mode, approve, props) {
 	);
 }
 
-async function getWasm(isDeposit) {
+async function getWasm() {
 	const result = await fetch("http://localhost:3001/getWASM");
 	if (!result.ok) {
 		throw new Error(await result.text());
